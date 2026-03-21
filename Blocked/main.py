@@ -1,9 +1,11 @@
+import os
 import time 
 
 import pygetwindow as gw
 
 
 distraction_keyword = ["YouTube", "Instagram", "TikTok", "Facebook"]
+Time_Limit = 15 
 
 
 def is_distraction(app_name):
@@ -33,18 +35,16 @@ while True:
 
     app_time[active_window] += 1
 
+    os.system('cls' if os.name == 'nt' else 'clear') 
 
-    if active_window != last_window:
-       print("\n--- App Usage ---")
-       for app, seconds in app_time.items():
-         if is_distraction(app):
-             print(f"{app}: {seconds} seconds (Distraction)")
-         else:         
-            
-             print(f"{app}: {seconds} seconds  -- not distraction")
+    print("=== App Usage (Live) ===\n")
 
-
-
-
-         last_window = active_window
-    time.sleep(1)     
+    for app , seconds in app_time.items():
+        if is_distraction(app):
+            if seconds >= Time_Limit:
+              print(f"{app} → {seconds} sec ❌ LIMIT EXCEEDED 🚨")
+            else:
+                print(f"{app} → {seconds} sec ❌ DISTRACTION")
+        else :
+            print(f"{app} → {seconds} sec ✅")
+    time.sleep(1)        
