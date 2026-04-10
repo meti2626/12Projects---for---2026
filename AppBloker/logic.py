@@ -19,7 +19,6 @@ def unblock_website(site):
     with open(HOSTS_PATH ,"r") as file:
         lines = file.readlines()
 
-
     with open (HOSTS_PATH  , "w") as file:
         for line in lines:
              if site not in line:
