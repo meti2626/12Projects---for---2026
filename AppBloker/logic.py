@@ -1,4 +1,8 @@
 
+import threading
+from time import time
+
+
 HOSTS_PATH = r"C:\Windows\System32\drivers\etc\hosts"
 REDIRECT_IP = "127.0.0.1"
 
@@ -23,3 +27,18 @@ def unblock_website(site):
         for line in lines:
              if site not in line:
                  file.write(line)       
+
+
+def block_with_timer(site ,duration):
+    def task():
+        block_website(site)
+        print(f"{site} blocked")
+
+
+        time.sleep(duration)  
+        
+
+        unblock_website(site)
+        print(f"{site} unblocked")
+
+    threading.Thread(target=task).start()                   

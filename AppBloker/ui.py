@@ -1,7 +1,5 @@
 import tkinter as tk
-from logic import block_website
-
-
+from logic import block_with_timer
 
 def run_app():
   root =tk.Tk()
@@ -20,7 +18,7 @@ def run_app():
       
 
 
-    block_website(site)
+    block_with_timer(site, int(time_val) * 60)
     listbox.insert(tk.END, f"{site} - {time_val} min (BLOCKED)") 
 
 ## see what we used it for
@@ -42,7 +40,6 @@ def run_app():
 
       APP_entry.delete(0, tk.END)
       time_entry.delete(0, tk.END)
-
 
 
 # -- Inputs --
