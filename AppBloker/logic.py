@@ -1,6 +1,6 @@
 
 import threading
-from time import time
+import time
 
 
 HOSTS_PATH = r"C:\Windows\System32\drivers\etc\hosts"
