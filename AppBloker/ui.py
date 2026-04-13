@@ -10,6 +10,9 @@ def run_app():
    
   def block_website_ui():
     site =  website_entry.get()
+
+    site = site.replace("https://", "").replace("http://", "").replace("www.", "")
+
     time_val= time_entry.get()
 
     if not site or not time_val.isdigit():
