@@ -1,7 +1,8 @@
 import tkinter as tk
+
 from tkinter import messagebox
 from logic import block_with_timer 
-from logic import block_app_with_time
+from logic import block_app_with_timer
 
 def run_app():
   root =tk.Tk()
