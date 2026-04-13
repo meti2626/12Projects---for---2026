@@ -1,5 +1,7 @@
 import tkinter as tk
-from logic import block_with_timer
+from tkinter import messagebox
+from logic import block_with_timer 
+from logic import block_app_with_time
 
 def run_app():
   root =tk.Tk()
@@ -36,8 +38,10 @@ def run_app():
       time_val = time_entry.get()
 
       if not app or not time_val.isdigit():
-        print("Please enter a valid application and time.")
-        return
+          messagebox.showerror("Error", "Enter valid app and time")
+          return
+
+      block_app_with_timer(app, int(time_val) * 60)
 
       listbox.insert(tk.END , f"{app} blocked for {time_val} minutes.")
 

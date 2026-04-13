@@ -41,4 +41,21 @@ def block_with_timer(site ,duration):
         unblock_website(site)
         print(f"{site} unblocked")
 
-    threading.Thread(target=task).start()                   
+    threading.Thread(target=task).start() 
+
+def block_app_with_time(app_name,duration):
+    def task():
+        end_time = time.time() + duration
+
+        while time.time() < end_time:
+            for process in psutil.process_iter(['name']):
+                try:
+                    if process.info['name'] and app_name.lower() in process.info['name'].lower():
+                        process.kill
+                except:
+                    pass
+            time.sleep(2)
+
+        print(f"{app_name}  is now unblocked")
+
+    threading.Thread(target=task).start()    
