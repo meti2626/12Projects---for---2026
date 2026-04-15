@@ -1,3 +1,5 @@
-from ui import run_app
+from ui import FocusBlockerApp
 
-run_app()
+if __name__ == "__main__":
+    app = FocusBlockerApp()
+    app.mainloop()

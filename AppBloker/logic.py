@@ -2,14 +2,12 @@ import psutil
 import threading
 import time
 
-
 HOSTS_PATH = r"C:\Windows\System32\drivers\etc\hosts"
 REDIRECT_IP = "127.0.0.1"
 
 
 def block_website(site):
-
-   with open(HOSTS_PATH , "r+") as file:
+    with open(HOSTS_PATH, "r+") as file:
         content = file.read()
 
         if site not in content:
@@ -17,31 +15,28 @@ def block_website(site):
             file.write(f"{REDIRECT_IP} www.{site}\n")
 
 
-## what the fuck
-
 def unblock_website(site):
-    with open(HOSTS_PATH ,"r") as file:
+    with open(HOSTS_PATH, "r") as file:
         lines = file.readlines()
 
-    with open (HOSTS_PATH  , "w") as file:
+    with open(HOSTS_PATH, "w") as file:
         for line in lines:
-             if site not in line:
-                 file.write(line)       
+            if site not in line:
+                file.write(line)
 
 
-def block_with_timer(site ,duration):
+def block_with_timer(site, duration):
     def task():
         block_website(site)
         print(f"{site} blocked")
 
-
-        time.sleep(duration)  
-        
+        time.sleep(duration)
 
         unblock_website(site)
         print(f"{site} unblocked")
 
-    threading.Thread(target=task).start() 
+    threading.Thread(target=task).start()
+
 
 def block_app_with_timer(app_name, duration):
     def task():
@@ -55,7 +50,7 @@ def block_app_with_timer(app_name, duration):
                 except:
                     pass
 
-            time.sleep(0.5)  # check every 2 seconds
+            time.sleep(0.5)
 
         print(f"{app_name} is now unblocked")
 
