@@ -23,7 +23,7 @@ answer = input("what does RAM stands for?")
 
 if answer.lower() == "mem":
      print("correct!")
-     score += 1
+     score += 2
 else:
     print("incorrect!")
 
