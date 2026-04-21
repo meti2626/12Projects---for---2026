@@ -175,6 +175,8 @@ class FocusBlockerApp(ctk.CTk):
         block_with_timer(site, duration)
         self.add_block_to_list(site, duration, "web")
 
+        self.reset_inputs(self.website_entry)
+
     def block_app_ui(self):
         app = self.app_entry.get().strip()
         duration = (self.selected_time["h"] * 3600 +
@@ -188,6 +190,14 @@ class FocusBlockerApp(ctk.CTk):
         block_app_with_timer(app, duration)
         self.add_block_to_list(app, duration, "app")
 
+        self.reset_inputs(self.app_entry)
+
+
+    def reset_inputs(self, entry_widget):
+        entry_widget.delete(0, "end")
+
+        self.selected_time = {"h": 0, "m":0 , "s":0}
+        self.time_display.configure(text="00h 00m 00s")
 
 if __name__ == "__main__":
     app = FocusBlockerApp()
